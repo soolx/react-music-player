@@ -1,25 +1,46 @@
 .App {
-  text-align: center;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
+  margin-right: 20px;
 }
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 80px;
   padding: 20px;
   color: white;
+  text-align: left;
 }
 
 .App-title {
+  display: flex;
+  align-items: center;
+  height: 100%;
   font-size: 1.5em;
 }
 
-.App-intro {
-  font-size: large;
+.App-content {
+  position: absolute;
+  top: 120px;
+  bottom:  80px;
+  width: 100%;
+  min-height: 200px;
+  background-color: whitesmoke;
+}
+
+.App-footer {
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  position: absolute;
+  background-color: gray;
+  height: 80px;
+  width: 100%;
+  bottom: 0;
+  color: white;
 }
 
 @keyframes App-logo-spin {

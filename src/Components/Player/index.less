@@ -1,8 +1,42 @@
 .cd {
-    animation: cd-spin infinite 10s linear;
-    height: 80px;
-    margin-right: 20px;
-  }
+  animation: cd-spin infinite 10s linear;
+  height: 80px;
+  margin-right: 40px;
+  float:left;
+}
+
+.icon {
+  font-size: 42px;
+  line-height: 100px;
+  margin: 10px 0;
+  color:#333;
+  -webkit-transition: font-size 0.25s ease-out 0s;
+  -moz-transition: font-size 0.25s ease-out 0s;
+  transition: font-size 0.25s ease-out 0s;
+}
+
+.playervis {
+  width: 300px;
+  height: 100px;
+}
+
+.details {
+  width: 180px;
+  height: 100%;
+  float: right;
+}
+
+.name {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 40%;
+}
+
+.artist {
+  display: flex;
+  justify-content: left;
+}
 
 @keyframes cd-spin {
 from { transform: rotate(0deg); }

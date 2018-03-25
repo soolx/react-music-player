@@ -1,13 +1,10 @@
-.App {
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
+.logo {
+  animation: logo-spin infinite 10s linear;
   height: 80px;
   margin-right: 20px;
 }
 
-.App-header {
+.header {
   background-color: #222;
   height: 80px;
   padding: 20px;
@@ -15,23 +12,26 @@
   text-align: left;
 }
 
-.App-title {
+.title {
   display: flex;
   align-items: center;
   height: 100%;
   font-size: 1.5em;
 }
 
-.App-content {
+.main {
   position: absolute;
   top: 120px;
   bottom:  80px;
   width: 100%;
   min-height: 200px;
   background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content:center;
 }
 
-.App-footer {
+.footer {
   display: flex;
   align-items: center;
   justify-content:center;
@@ -43,7 +43,7 @@
   color: white;
 }
 
-@keyframes App-logo-spin {
+@keyframes logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }

@@ -1,7 +1,7 @@
 .cd {
   animation: cd-spin infinite 10s linear;
   height: 80px;
-  margin-right: 40px;
+  margin: 0 40px 0 20px;
   float:left;
 }
 
@@ -16,27 +16,28 @@
 }
 
 .playervis {
-  width: 300px;
+  width: 320px;
   height: 100px;
+  background-color: rgba(200,200,200,0.7);
 }
 
 .details {
   width: 180px;
   height: 100%;
   float: right;
+  .name {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 40%;
+  }
+  .artist {
+    display: flex;
+    justify-content: left;
+  }
 }
 
-.name {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  height: 40%;
-}
 
-.artist {
-  display: flex;
-  justify-content: left;
-}
 
 @keyframes cd-spin {
 from { transform: rotate(0deg); }

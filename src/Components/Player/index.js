@@ -36,12 +36,22 @@ class Player extends Component {
     }
   }
 
+  add_ended_event = () => {
+    console.log('s');
+    console.log(this.refs.audio);
+    this.refs.audio.onended = () => {this.toggle_next()};
+  }
+
+  componentDidMount = () => {
+    this.add_ended_event();
+  }
+
   render() {
     const { isplay, list, seleted } = this.state;
     return (
       <div>
         <audio src={list[seleted].url} autoPlay="autoplay" ref="audio"></audio>
-        <div className="playervis">
+        <div className="playervis"> 
           <img src={cd} className="cd" alt="cd" />
           <div className="details">
             <div className="name">{list[seleted].name}</div>

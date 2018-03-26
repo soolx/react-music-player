@@ -27,12 +27,16 @@ class Player extends Component {
   toggle_next = () => {
     if(this.state.seleted < (this.state.list.length - 1)){
       this.setState(prevState => ({seleted: (prevState.seleted + 1)}));
+    } else {
+      this.setState({seleted: 0});
     }
   }
 
   toggle_prev = () => {
     if(this.state.seleted > 0){
       this.setState(prevState => ({seleted: (prevState.seleted - 1)}));
+    } else {
+      this.setState({seleted: (this.state.list.length - 1)});
     }
   }
 

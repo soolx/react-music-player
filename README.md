@@ -44,7 +44,7 @@ npm run build
 yarn build
 ```
 
-# Deploy
+## Deploy
 > Use NPM
 
 ```

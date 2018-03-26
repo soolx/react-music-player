@@ -5,7 +5,7 @@ import './index.less'
 
 class Player extends Component {
   state = {
-    isplay: true,
+    isplay: false,
     list: this.props.musiclist,
     seleted: 0,
   }
@@ -13,11 +13,13 @@ class Player extends Component {
   pause = () => {
     this.refs.audio.pause();
     this.setState({isplay: false});
+    this.props.togglePlayStatus(true);
   }
 
   play = () => {
     this.refs.audio.play();
     this.setState({isplay: true});
+    this.props.togglePlayStatus(false);
   }
 
   togglePlayStatus = () => {
@@ -54,7 +56,7 @@ class Player extends Component {
     const { isplay, list, seleted } = this.state;
     return (
       <div>
-        <audio src={list[seleted].url} autoPlay="autoplay" ref="audio"></audio>
+        <audio src={list[seleted].url} ref="audio"></audio>
         <div className="playlervisdiv">
           <div className="playervis"> 
             <img src={cd} className={"cd" + (isplay?"":" cdpaused")} alt="cd" />

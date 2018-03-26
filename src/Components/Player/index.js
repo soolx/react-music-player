@@ -51,15 +51,17 @@ class Player extends Component {
     return (
       <div>
         <audio src={list[seleted].url} autoPlay="autoplay" ref="audio"></audio>
-        <div className="playervis"> 
-          <img src={cd} className="cd" alt="cd" />
-          <div className="details">
-            <div className="name">{list[seleted].name}</div>
-            <div className="artist">{list[seleted].artist}</div>
+        <div className="playlervisdiv">
+          <div className="playervis"> 
+            <img src={cd} className={"cd" + (isplay?"":" cdpaused")} alt="cd" />
+            <div className="details">
+              <div className="name">{list[seleted].name}</div>
+              <div className="artist">{list[seleted].artist}</div>
+            </div>
           </div>
-          
         </div>
-        <div>
+        
+        <div className="playlercontrols">
           <i onClick={this.toggle_prev} className="icon iconfont icon-prev"></i>
           <i onClick={this.togglePlayStatus} className={"icon iconfont icon-" + (isplay?"pause":"play")}></i>
           <i onClick={this.toggle_next} className="icon iconfont icon-next"></i>

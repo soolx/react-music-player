@@ -1,12 +1,16 @@
 .cd {
-  animation: cd-spin infinite 10s linear;
+  animation: cd-spin infinite 5s linear;
   height: 80px;
-  margin: 0 40px 0 20px;
+  margin: 0 40px 0 0;
   float:left;
 }
 
+.cdpaused {
+  animation-play-state: paused;
+}
+
 .icon {
-  font-size: 42px;
+  font-size: 2em;
   line-height: 100px;
   margin: 10px 0;
   color:#333;
@@ -15,10 +19,20 @@
   transition: font-size 0.25s ease-out 0s;
 }
 
-.playervis {
-  width: 320px;
-  height: 100px;
+.playlervisdiv {
+  width: 360px;
+  height: 150px;
   background-color: rgba(200,200,200,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border-radius:10px;
+}
+
+.playervis {
+  width: 300px;
+  height: 80px;
 }
 
 .details {
@@ -30,11 +44,23 @@
     justify-content: left;
     align-items: center;
     height: 40%;
+    font-size: 1em;
   }
   .artist {
     display: flex;
     justify-content: left;
+    font-size: 1em;
   }
+}
+
+.playlercontrols {
+  width: 360px;
+  height: 50px;
+  background-color: rgba(200,200,200,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius:10px;
 }
 
 

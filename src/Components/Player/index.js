@@ -57,8 +57,26 @@ class Player extends Component {
     this.refs.audio.ondurationchange = () => {
       this.setState({ seletedTimeDuration: this.refs.audio.duration});
     }
+    // 音频播放位置改变事件
     this.refs.audio.ontimeupdate = () => {
       this.setState({ seletedCurrentTime : this.refs.audio.currentTime});
+    }
+    // 音频就绪事件
+    this.refs.audio.oncanplay = () => {
+      if(this.state.isplay){
+        this.refs.audio.play();
+      }
+    }
+    // 进度条点击事件
+    this.refs.progressbarbg.onclick = e => {
+      const { seletedTimeDuration } = this.state;
+      const pbgobj = this.refs.progressbarbg.getBoundingClientRect();
+      const newSeletedCurrentTime = (e.clientX - pbgobj.left) / (pbgobj.right - pbgobj.left) * seletedTimeDuration;
+      this.refs.audio.currentTime = newSeletedCurrentTime;
+      this.setState({ seletedCurrentTime: newSeletedCurrentTime });
+    }
+    this.refs.progressbarcurrent.onclick = e => {
+      this.refs.progressbarbg.onclick(e);
     }
   }
 
@@ -68,7 +86,7 @@ class Player extends Component {
 
   render() {
     const { isplay, list, seleted, seletedTimeDuration, seletedCurrentTime } = this.state;
-    const currentProgress = (seletedCurrentTime/seletedTimeDuration) * 100 + "%";
+    const currentProgress = ( seletedCurrentTime / seletedTimeDuration ) * 100 + "%";
     return (
       <div>
         <audio src={list[seleted].url} preload="auto" ref="audio"></audio>
@@ -84,11 +102,11 @@ class Player extends Component {
 
         <div className="progressbar">
           <svg>
-            <rect width="100%" height="10" fill="#ccc" rx="3" ry="5"></rect>
-            <rect width={ currentProgress } height="10" fill="#0078bc" rx="3" ry="5"></rect>
+            <rect width="100%" height="10" fill="#ccc" rx="3" ry="5" ref="progressbarbg"></rect>
+            <rect width={ currentProgress } height="10" fill="#0078bc" rx="3" ry="5" ref="progressbarcurrent"></rect>
           </svg>
         </div>
-        
+
         <div className="playcontrols">
           <i onClick={this.toggle_prev} className="icon iconfont icon-prev"></i>
           <i onClick={this.togglePlayStatus} className={"icon iconfont icon-" + (isplay?"pause":"play")}></i>

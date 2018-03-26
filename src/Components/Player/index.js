@@ -83,6 +83,27 @@ class Player extends Component {
   componentDidMount = () => {
     this.add_event();
   }
+  
+  sec_to_time = function(s) {
+    var t = '';
+    if(s > -1){
+        // var hour = Math.floor(s/3600);
+        var min = Math.floor(s/60) % 60;
+        var sec = s % 60;
+        // if(hour < 10) {
+        //     t = '0'+ hour + ":";
+        // } else {
+        //     t = hour + ":";
+        // }
+
+        if(min < 10){t += "0";}
+        t += min + ":";
+        if(sec < 10){t += "0";}
+        t += sec.toFixed(0);
+    }
+    console.log(t);
+    return t;
+  }
 
   render() {
     const { isplay, list, seleted, seletedTimeDuration, seletedCurrentTime } = this.state;
@@ -90,21 +111,25 @@ class Player extends Component {
     return (
       <div>
         <audio src={list[seleted].url} preload="auto" ref="audio"></audio>
-        <div className="infobackground">
-          <div className="info"> 
-            <img src={cd} className={"cd" + (isplay?"":" cdpaused")} alt="cd" />
-            <div className="details">
-              <div className="name">{list[seleted].name}</div>
-              <div className="artist">{list[seleted].artist}</div>
+        <div className="playermain">
+          <div className="infobackground">
+            <div className="info"> 
+              <img src={cd} className={"cd" + (isplay?"":" cdpaused")} alt="cd" />
+              <div className="details">
+                <div className="name">{list[seleted].name}</div>
+                <div className="artist">{list[seleted].artist}</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="progressbar">
-          <svg>
-            <rect width="100%" height="10" fill="#ccc" rx="3" ry="5" ref="progressbarbg"></rect>
-            <rect width={ currentProgress } height="10" fill="#0078bc" rx="3" ry="5" ref="progressbarcurrent"></rect>
-          </svg>
+          <div className="progressbar">
+            <svg>
+              <text x="1" y="15" fill="#666666" font-size="0.8em">{ this.sec_to_time(seletedCurrentTime) }</text>
+              <text x="341" y="15" fill="#666666" font-size="0.8em" text-anchor="end">{ this.sec_to_time(seletedTimeDuration) }</text>
+              <rect y="20" width="100%" height="10" fill="#ccc" rx="3" ry="5" ref="progressbarbg"></rect>
+              <rect y="20" width={ currentProgress } height="10" fill="#666666" rx="3" ry="5" ref="progressbarcurrent"></rect>
+            </svg>
+          </div>
         </div>
 
         <div className="playcontrols">

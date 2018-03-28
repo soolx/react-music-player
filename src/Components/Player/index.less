@@ -1,12 +1,7 @@
-.cd {
-  animation: cd-spin infinite 5s linear;
-  height: 80px;
-  margin: 0 40px 0 0;
-  float:left;
-}
+@playerwidth: 40vw;
 
-.cdpaused {
-  animation-play-state: paused;
+@media (min-device-width : 375px) and (max-device-width : 667px) and (-webkit-min-device-pixel-ratio : 2){
+  @playerwidth: 80vw;
 }
 
 .icon {
@@ -25,42 +20,52 @@
 }
 
 .infobackground {
-  width: 360px;
-  height: 150px;
+  width: @playerwidth;
+  height: 22vh;
   // background-color: rgba(200,200,200,0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   // margin-bottom: 10px;
   // border-radius:10px;
-}
-
-.info {
-  width: 300px;
-  height: 80px;
-}
-
-.details {
-  width: 180px;
-  height: 100%;
-  float: right;
-  .name {
+  .info {
+    width: 90%;
+    height: 20vh;
     display: flex;
-    justify-content: left;
     align-items: center;
-    height: 40%;
-    font-size: 1em;
-  }
-  .artist {
-    display: flex;
-    justify-content: left;
-    font-size: 1em;
+    .cd {
+      animation: cd-spin infinite 5s linear;
+      height: 15vh;
+      margin: 0 5vw 0 0;
+      float:left;
+    }
+    .cdpaused {
+      animation-play-state: paused;
+    }
+    .details {
+      // width: 180px;
+      height: 50%;
+      float: right;
+      .name {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        height: 40%;
+        font-size: 3vmax;
+        margin-bottom: 2vh;
+      }
+      .artist {
+        display: flex;
+        justify-content: left;
+        font-size: 2vmax;
+      }
+    }
   }
 }
 
 .progressbar {
-  width: 360px;
-  height: 40px;
+  width: @playerwidth;
+  height: 50px;
   // background-color: rgba(200,200,200,0.7);
   display: flex;
   align-items: center;
@@ -68,13 +73,13 @@
   margin-bottom: 10px;
   // border-radius:8px;
   svg {
-    width: 95%;
+    width: 90%;
     height: 35px;
   }
 }
 
 .playcontrols {
-  width: 360px;
+  width: @playerwidth;
   height: 50px;
   background-color: rgba(200,200,200,0.7);
   display: flex;
@@ -83,7 +88,17 @@
   border-radius:10px;
 }
 
-
+@media (min-device-width : 375px) and (max-device-width : 667px) {
+  .infobackground {
+    width: 2 * @playerwidth;
+  }
+  .progressbar {
+    width: 2 * @playerwidth;
+  }
+  .playcontrols {
+    width: 2 * @playerwidth;
+  }
+}
 
 @keyframes cd-spin {
 from { transform: rotate(0deg); }

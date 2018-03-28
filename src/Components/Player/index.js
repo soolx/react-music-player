@@ -85,23 +85,24 @@ class Player extends Component {
   }
   
   sec_to_time = function(s) {
-    var t = '';
+    let t;
     if(s > -1){
-        // var hour = Math.floor(s/3600);
-        var min = Math.floor(s/60) % 60;
-        var sec = s % 60;
-        // if(hour < 10) {
-        //     t = '0'+ hour + ":";
-        // } else {
-        //     t = hour + ":";
-        // }
+        let hour = Math.floor(s/3600);
+        let min = Math.floor(s/60) % 60;
+        let sec = s % 60;
+        if(hour === 0) {
+          t = '';
+        } else if (hour < 10) {
+          t = '0'+ hour + ":";
+        } else {
+          t = hour + ":";
+        }
 
         if(min < 10){t += "0";}
         t += min + ":";
         if(sec < 10){t += "0";}
         t += sec.toFixed(0);
     }
-    console.log(t);
     return t;
   }
 
@@ -124,8 +125,8 @@ class Player extends Component {
 
           <div className="progressbar">
             <svg>
-              <text x="1" y="15" fill="#666666" font-size="0.8em">{ this.sec_to_time(seletedCurrentTime) }</text>
-              <text x="341" y="15" fill="#666666" font-size="0.8em" text-anchor="end">{ this.sec_to_time(seletedTimeDuration) }</text>
+              <text x="0" y="15" fill="#666666" fontSize="1vm">{ this.sec_to_time(seletedCurrentTime) }</text>
+              <text x="36vw" y="15" fill="#666666" fontSize="1vm" textAnchor="end">{ this.sec_to_time(seletedTimeDuration) }</text>
               <rect y="20" width="100%" height="10" fill="#ccc" rx="3" ry="5" ref="progressbarbg"></rect>
               <rect y="20" width={ currentProgress } height="10" fill="#666666" rx="3" ry="5" ref="progressbarcurrent"></rect>
             </svg>

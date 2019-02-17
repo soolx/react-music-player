@@ -23,7 +23,7 @@ class App extends Component {
           <Player musiclist={musiclist} togglePlayStatus={this.togglePlayStatus}/>
         </div>
         <footer className="footer">
-          <div>Soolx 2018</div>
+          <div>Soolx 2019</div>
         </footer>
       </div>
     );

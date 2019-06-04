@@ -1,16 +1,20 @@
 {
-  "private": true,
+  "name": "react-music-player",
+  "version": "0.2.0",
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
     "test": "umi test",
     "lint": "eslint --ext .js src mock tests",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "classnames": "^2.2.6",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "dva": "^2.6.0-beta.4"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",

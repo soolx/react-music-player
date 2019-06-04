@@ -5,9 +5,9 @@ export default {
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {
       antd: false,
-      dva: true,
+      dva: false,
       dynamicImport: false,
-      title: 'soolx-cc4a54',
+      title: 'React Music Player',
       dll: true,
 
       routes: {

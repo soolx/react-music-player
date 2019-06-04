@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
-import cd from '../../assets/cd.svg'
-import '../../assets/player-control-iconfont/iconfont.css'
-import './index.less'
+import React, { Component } from 'react';
+import classnames from 'classnames';
+import Icon from '@/components/Icon';
+import cd from '@/assets/cd.svg'
+// import '@/assets/player-control-iconfont/iconfont.css'
+import styles from './index.less'
 
 class Player extends Component {
   state = {
@@ -83,7 +85,7 @@ class Player extends Component {
   componentDidMount = () => {
     this.add_event();
   }
-  
+
   sec_to_time = function(s) {
     let t;
     if(s > -1){
@@ -112,18 +114,18 @@ class Player extends Component {
     return (
       <div>
         <audio src={list[seleted].url} preload="auto" ref="audio"></audio>
-        <div className="playermain">
-          <div className="infobackground">
-            <div className="info"> 
-              <img src={cd} className={"cd" + (isplay?"":" cdpaused")} alt="cd" />
-              <div className="details">
-                <div className="name">{list[seleted].name}</div>
-                <div className="artist">{list[seleted].artist}</div>
+        <div className={styles.playermain}>
+          <div className={styles.infobackground}>
+            <div className={styles.info}>
+              <img src={cd} className={classnames(styles.cd, {[styles.cdpaused]: !isplay})} alt="cd" />
+              <div className={styles.details}>
+                <div className={styles.name}>{list[seleted].name}</div>
+                <div className={styles.artist}>{list[seleted].artist}</div>
               </div>
             </div>
           </div>
 
-          <div className="progressbar">
+          <div className={styles.progressbar}>
             <svg>
               <text x="0" y="15" fill="#666666" fontSize="1vm">{ this.sec_to_time(seletedCurrentTime) }</text>
               <text x="36vw" y="15" fill="#666666" fontSize="1vm" textAnchor="end">{ this.sec_to_time(seletedTimeDuration) }</text>
@@ -133,10 +135,10 @@ class Player extends Component {
           </div>
         </div>
 
-        <div className="playcontrols">
-          <i onClick={this.toggle_prev} className="icon iconfont icon-prev"></i>
-          <i onClick={this.togglePlayStatus} className={"icon iconfont icon-" + (isplay?"pause":"play")}></i>
-          <i onClick={this.toggle_next} className="icon iconfont icon-next"></i>
+        <div className={styles.playcontrols}>
+          <Icon type='icon-prev' onClick={this.toggle_prev} />
+          <Icon type={`icon-${isplay?"pause":"play"}`} onClick={this.togglePlayStatus} />
+          <Icon type='icon-next' onClick={this.toggle_next} />
         </div>
 
       </div>

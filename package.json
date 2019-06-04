@@ -3,12 +3,12 @@
   "version": "0.2.0",
   "scripts": {
     "start": "umi dev",
-    "build": "umi build",
+    "build": "UMI_ENV=cloud umi build",
     "test": "umi test",
     "lint": "eslint --ext .js src mock tests",
     "precommit": "lint-staged",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "classnames": "^2.2.6",

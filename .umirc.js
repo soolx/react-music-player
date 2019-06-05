@@ -9,7 +9,8 @@ export default {
       dynamicImport: false,
       title: 'React Music Player',
       dll: true,
-
+      hardSource: true,
+      // pwa: true,
       routes: {
         exclude: [
           /models\//,

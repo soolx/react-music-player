@@ -1,31 +1,30 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'dva';
+import { withRouter } from 'umi';
+import PropTypes from 'prop-types';
 import logo from '@/assets/logo.svg';
-import Player from '@/components/Player';
-import musiclist from '@/config/example_music';
+import { Player } from '@/components';
 import classnames from 'classnames';
 import styles from './index.less';
 
-class App extends Component {
-  state = {
-    isplay: true,
-  }
-
-  togglePlayStatus = (value) => {
-    this.setState({isplay: value});
-  }
-
+@withRouter
+@connect(({ player }) => ({
+  isPlay: player.isPlay,
+}))
+class App extends PureComponent {
   render() {
-    const { isplay } = this.state;
-    const logoClass = classnames(styles.logo, {[styles.logopaused]: isplay});
+    const { isPlay } = this.props;
+    const logoClass = classnames(styles.logo, { [styles.logopaused]: isPlay });
     return (
       <div>
         <header className={styles.header}>
           <div className={styles.title}>
-            <img src={logo} className={logoClass} alt="logo" />React Music Player
+            <img src={logo} className={logoClass} alt="logo" />
+            React Music Player
           </div>
         </header>
         <div className={styles.main}>
-          <Player musiclist={musiclist} togglePlayStatus={this.togglePlayStatus}/>
+          <Player />
         </div>
         <footer className={styles.footer}>
           <div>Soolx 2019</div>
@@ -34,5 +33,15 @@ class App extends Component {
     );
   }
 }
+
+App.defaultProps = {
+  // dispatch: () => {},
+  isPlay: false,
+};
+
+App.propTypes = {
+  // dispatch: PropTypes.func,
+  isPlay: PropTypes.bool,
+};
 
 export default App;

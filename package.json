@@ -12,24 +12,26 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "dva": "^2.6.0-beta.4"
+    "umi": "^2.7.0",
+    "umi-plugin-react": "^1.8.0"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
     "eslint": "^5.4.0",
-    "eslint-config-umi": "^1.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-umi": "^1.4.5",
+    "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.11.1",
     "gh-pages": "^2.0.1",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.2",
-    "react-test-renderer": "^16.7.0",
-    "umi": "^2.7.0",
-    "umi-plugin-react": "^1.8.0"
+    "react-test-renderer": "^16.7.0"
   },
   "lint-staged": {
     "*.{js,jsx}": [

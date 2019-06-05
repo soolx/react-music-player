@@ -1,0 +1,12 @@
+---
+extends:
+  - eslint-config-umi
+  - airbnb
+settings:
+  import/resolver: webpack
+rules:
+  react/jsx-filename-extension: [1, { "extensions": [".js", ".jsx"] }]
+  # react/prop-types: [1]
+  import/prefer-default-export: [0]
+  jsx-a11y/media-has-caption: [0]
+  import/no-extraneous-dependencies: [0]

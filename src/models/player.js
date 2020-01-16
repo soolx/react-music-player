@@ -38,7 +38,7 @@ export default {
   },
   effects: {
     * nextSong(_, { put, select }) {
-      const { selected, playList } = yield select(store => ({
+      const { selected, playList } = yield select((store) => ({
         selected: store.player.selected,
         playList: store.list.playList,
       }));
@@ -48,7 +48,7 @@ export default {
       });
     },
     * prevSong(_, { put, select }) {
-      const { selected, playList } = yield select(store => ({
+      const { selected, playList } = yield select((store) => ({
         selected: store.player.selected,
         playList: store.list.playList,
       }));
@@ -58,7 +58,7 @@ export default {
       });
     },
     * changePlayStatus(_, { put, select }) {
-      const isPlay = yield select(store => store.player.isPlay);
+      const isPlay = yield select((store) => store.player.isPlay);
       yield put({
         type: 'saveStatus',
         payload: !isPlay,

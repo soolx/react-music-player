@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 // import styles from './index.less';
-// import classnames from 'classnames';
 
 export default function Icon(props) {
   const { type, ...otherProps } = props;
   return (
-    <i className={`iconfont ${type}`} {...otherProps} />
+    <i className={classNames('iconfont', type)} {...otherProps} />
   );
 }
 

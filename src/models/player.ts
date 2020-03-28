@@ -1,14 +1,35 @@
+import { Effect, Reducer } from 'umi';
 
-export default {
+export interface PlayerModelState {
+  isPlay: boolean;
+  selected: number;
+  timeDuration: number;
+  currentTime: number;
+}
+
+export interface PlayerModelType {
+  namespace: 'player';
+  state: PlayerModelState;
+  reducers: {
+    saveStatus: Reducer<PlayerModelState>;
+    saveSelected: Reducer<PlayerModelState>;
+    saveTimeDuration: Reducer<PlayerModelState>;
+    saveCurrentTime: Reducer<PlayerModelState>;
+  };
+  effects: {
+    nextSong: Effect;
+    prevSong: Effect;
+    changePlayStatus: Effect;
+  };
+}
+
+const PlayerModel: PlayerModelType = {
+  namespace: 'player',
   state: {
     isPlay: false,
     selected: 0,
     timeDuration: 1,
     currentTime: 0,
-  },
-  subscriptions: {
-    // setup({ dispatch, history }) {
-    // },
   },
   reducers: {
     saveStatus(state, { payload }) {
@@ -37,18 +58,18 @@ export default {
     },
   },
   effects: {
-    * nextSong(_, { put, select }) {
-      const { selected, playList } = yield select((store) => ({
+    *nextSong(_, { put, select }) {
+      const { selected, playList } = yield select(store => ({
         selected: store.player.selected,
         playList: store.list.playList,
       }));
       yield put({
         type: 'saveSelected',
-        payload: selected < (playList.length - 1) ? selected + 1 : 0,
+        payload: selected < playList.length - 1 ? selected + 1 : 0,
       });
     },
-    * prevSong(_, { put, select }) {
-      const { selected, playList } = yield select((store) => ({
+    *prevSong(_, { put, select }) {
+      const { selected, playList } = yield select(store => ({
         selected: store.player.selected,
         playList: store.list.playList,
       }));
@@ -57,8 +78,8 @@ export default {
         payload: selected > 0 ? selected - 1 : playList.length - 1,
       });
     },
-    * changePlayStatus(_, { put, select }) {
-      const isPlay = yield select((store) => store.player.isPlay);
+    *changePlayStatus(_, { put, select }) {
+      const isPlay = yield select(store => store.player.isPlay);
       yield put({
         type: 'saveStatus',
         payload: !isPlay,
@@ -66,3 +87,5 @@ export default {
     },
   },
 };
+
+export default PlayerModel;

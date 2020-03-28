@@ -1,12 +1,12 @@
 import React from 'react';
-import { useSelector } from 'dva';
+import { useSelector } from 'umi';
 import classNames from 'classnames';
-import logo from '@/assets/logo.svg';
 import { Player } from '@/components';
+import logo from '@/assets/logo.svg';
 import styles from './index.less';
 
 export default function App() {
-  const isPlay = useSelector((state) => state.player.isPlay);
+  const isPlay = useSelector(({ player }) => player.isPlay);
   const logoClass = classNames(styles.logo, { [styles.logopaused]: isPlay });
   return (
     <div>

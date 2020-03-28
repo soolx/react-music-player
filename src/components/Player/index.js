@@ -1,19 +1,16 @@
 import React, { useCallback, useRef, useEffect } from 'react';
-import { useSelector, useDispatch } from 'dva';
+import { useSelector, useDispatch } from 'umi';
 import classnames from 'classnames';
-import Icon from '../Icon';
 import { secToTime } from '@/utils/util';
 import cd from '@/assets/cd.svg';
+import Icon from '../Icon';
 import styles from './index.less';
 
 export default function Player() {
-  const {
-    isPlay,
-    selected,
-    timeDuration,
-    currentTime,
-  } = useSelector((state) => state.player);
-  const playList = useSelector((state) => state.list.playList);
+  const { isPlay, selected, timeDuration, currentTime } = useSelector(
+    state => state.player,
+  );
+  const playList = useSelector(state => state.list.playList);
   const audio = useRef(null);
   const barContainer = useRef(null);
   const barCurrent = useRef(null);
@@ -21,14 +18,17 @@ export default function Player() {
   const currentProgress = `${(currentTime / timeDuration) * 100}%`;
 
   // 控制audio
-  const operatePlayer = useCallback((status) => {
-    const AudioPlayer = audio.current;
-    if (status || isPlay) {
-      AudioPlayer.play();
-    } else {
-      AudioPlayer.pause();
-    }
-  }, [isPlay]);
+  const operatePlayer = useCallback(
+    status => {
+      const AudioPlayer = audio.current;
+      if (status || isPlay) {
+        AudioPlayer.play();
+      } else {
+        AudioPlayer.pause();
+      }
+    },
+    [isPlay],
+  );
 
   // 下一首
   const toggleNext = useCallback(() => {
@@ -37,19 +37,25 @@ export default function Player() {
     });
   }, [dispatch]);
 
-  const setTimeDuration = useCallback((value) => {
-    dispatch({
-      type: 'player/saveTimeDuration',
-      payload: value,
-    });
-  }, [dispatch]);
+  const setTimeDuration = useCallback(
+    value => {
+      dispatch({
+        type: 'player/saveTimeDuration',
+        payload: value,
+      });
+    },
+    [dispatch],
+  );
 
-  const setCurrentTime = useCallback((value) => {
-    dispatch({
-      type: 'player/saveCurrentTime',
-      payload: value,
-    });
-  }, [dispatch]);
+  const setCurrentTime = useCallback(
+    value => {
+      dispatch({
+        type: 'player/saveCurrentTime',
+        payload: value,
+      });
+    },
+    [dispatch],
+  );
 
   // 添加绑定事件
   useEffect(() => {
@@ -57,7 +63,9 @@ export default function Player() {
     const progressBarContainer = barContainer.current;
     const progressBarCurrent = barCurrent.current;
     // 音频结束事件
-    AudioPlayer.onended = () => { toggleNext(); };
+    AudioPlayer.onended = () => {
+      toggleNext();
+    };
     // 音频时间改变事件
     AudioPlayer.ondurationchange = () => {
       setTimeDuration(AudioPlayer.duration);
@@ -71,20 +79,19 @@ export default function Player() {
       operatePlayer();
     };
     // 进度条点击事件
-    progressBarContainer.onclick = (e) => {
+    progressBarContainer.onclick = e => {
       const pbgobj = progressBarContainer.getBoundingClientRect();
-      const clickTime = ((e.clientX - pbgobj.left)
-        / (pbgobj.right - pbgobj.left)) * timeDuration;
+      const clickTime =
+        ((e.clientX - pbgobj.left) / (pbgobj.right - pbgobj.left)) *
+        timeDuration;
       AudioPlayer.currentTime = clickTime;
       setCurrentTime(clickTime);
     };
 
-    progressBarCurrent.onclick = (e) => {
+    progressBarCurrent.onclick = e => {
       progressBarContainer.onclick(e);
     };
-    return () => {
-
-    };
+    return () => {};
   }, [
     setTimeDuration,
     setCurrentTime,
@@ -117,7 +124,11 @@ export default function Player() {
       <div className={styles.playermain}>
         <div className={styles.infobackground}>
           <div className={styles.info}>
-            <img src={cd} className={classnames(styles.cd, { [styles.cdpaused]: !isPlay })} alt="cd" />
+            <img
+              src={cd}
+              className={classnames(styles.cd, { [styles.cdpaused]: !isPlay })}
+              alt="cd"
+            />
             <div className={styles.details}>
               <div className={styles.name}>{playList[selected].name}</div>
               <div className={styles.artist}>{playList[selected].artist}</div>
@@ -127,17 +138,46 @@ export default function Player() {
 
         <div className={styles.progressbar}>
           <svg>
-            <text x="0" y="15" fill="#666666" fontSize="1vm">{ secToTime(currentTime) }</text>
-            <text x="36vw" y="15" fill="#666666" fontSize="1vm" textAnchor="end">{ secToTime(timeDuration) }</text>
-            <rect y="20" width="100%" height="10" fill="#ccc" rx="3" ry="5" ref={barContainer} />
-            <rect y="20" width={currentProgress} height="10" fill="#666666" rx="3" ry="5" ref={barCurrent} />
+            <text x="0" y="15" fill="#666666" fontSize="1vm">
+              {secToTime(currentTime)}
+            </text>
+            <text
+              x="36vw"
+              y="15"
+              fill="#666666"
+              fontSize="1vm"
+              textAnchor="end"
+            >
+              {secToTime(timeDuration)}
+            </text>
+            <rect
+              y="20"
+              width="100%"
+              height="10"
+              fill="#ccc"
+              rx="3"
+              ry="5"
+              ref={barContainer}
+            />
+            <rect
+              y="20"
+              width={currentProgress}
+              height="10"
+              fill="#666666"
+              rx="3"
+              ry="5"
+              ref={barCurrent}
+            />
           </svg>
         </div>
       </div>
 
       <div className={styles.playcontrols}>
         <Icon type="icon-prev" onClick={togglePrev} />
-        <Icon type={`icon-${isPlay ? 'pause' : 'play'}`} onClick={togglePlayStatus} />
+        <Icon
+          type={`icon-${isPlay ? 'pause' : 'play'}`}
+          onClick={togglePlayStatus}
+        />
         <Icon type="icon-next" onClick={toggleNext} />
       </div>
     </div>

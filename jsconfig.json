@@ -3,9 +3,10 @@
     "experimentalDecorators": true,
     "target": "esnext",
     "jsx": "react",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"]
     }
   },
   "exclude": ["node_modules"]
